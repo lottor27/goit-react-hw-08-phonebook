@@ -13,3 +13,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.container-fluid{
+  background-color: rgba(170, 173, 166, 0.651);
+  border-radius: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
