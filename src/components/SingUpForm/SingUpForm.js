@@ -22,9 +22,10 @@ const SignUpForm = () => {
       ),
   });
 
-  const handleSubmit = values => {
+  const handleSubmit = (values, { resetForm }) => {
     console.log(values);
     dispatch(signUpUser(values));
+    resetForm();
   };
 
   return (
