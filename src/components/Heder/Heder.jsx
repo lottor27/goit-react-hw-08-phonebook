@@ -19,7 +19,7 @@ const Header = ({ headTitle, headSubTitle }) => {
         <div>
           <div>
             <Link
-              to="/goit-react-hw-08-phonebook"
+              to="/"
               className="navbar-toggler"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNav"
