@@ -17,27 +17,33 @@ const Header = ({ headTitle, headSubTitle }) => {
  const handleBurgerMenu = () => dispatch(openMenu());
 
   return (
-    <div >
-      <div className="container flex-wrap">
-        <div >
-          (
-            <button
-              type="button"
-              onClick={handleBurgerMenu}
+    <div className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
+        <div>
+          {/* <button
+            type="button"
+            onClick={handleBurgerMenu}
+            className="navbar-toggler"
+          ></button> */}
+          <div>
+            <Link
+              to="/"
+              className="navbar-toggler"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
             >
-            </button>
-          )
-          <div >
-            <Link to="/" >
               {headTitle}
             </Link>
-            <p >{headSubTitle}</p>
+            <p className="navbar-brand">{headSubTitle}</p>
           </div>
         </div>
         && (
-          <div >
-            {isLoggedIn ? <UserMenu /> : <AuthMenu />}
-          </div>
+        <div className="nav-link active">
+          {isLoggedIn ? <UserMenu /> : <AuthMenu />}
+        </div>
         )
       </div>
     </div>
