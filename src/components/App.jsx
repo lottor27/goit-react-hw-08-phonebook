@@ -22,7 +22,7 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    !isRefreshing && (
+     (
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
