@@ -1,58 +1,53 @@
-import React, { Suspense, lazy, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import SharedLayout from './SharedLayout/SharedLayout';
-import { useDispatch } from 'react-redux';
-import { refreshUser } from 'redux/auth/auth-operations';
-// import { useAuth } from 'Hooks/auth-use';
-import { RestrictedRoute } from './Guard/RestrictedRoute';
-import { PrivateRoute } from './Guard/PrivateRoute';
-import Loading from './loading/loading';
-
-const HomePage = lazy(() => import('Pages/Home'));
-const SignUpPage = lazy(() => import('Pages/Register'));
-const LoginPage = lazy(() => import('Pages/Login'));
-const ContactsPage = lazy(() => import('Pages/Contacts'));
-const ErrorPage = lazy(() => import('Pages/Error'));
+import React, { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import ContactForm from './ContactForm/ContactForm';
+import Register from './Register/Register';
+import Login from './Login/Login';
+import Layout from './Layout/Layout';
+import Header from './Header/Header';
+import PublicGuard from 'guards/PublicGuard';
+import PrivateGuard from 'guards/PrivateGuard';
+import { refreshUserThunk } from 'store/user/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { userSelectors } from 'store/user/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
-
+  const { token } = useSelector(userSelectors);
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
+    token&&dispatch(refreshUserThunk());
+  }, [dispatch,token]);
   return (
-    <Suspense fallback={<Loading />}>
+    <div>
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<HomePage />} />
+        <Route path="/" element={<Header />}></Route>
+        <Route
+          path="/register"
+          element={
+            <PublicGuard>
+              <Register />
+            </PublicGuard>
+          }
+        ></Route>
+        <Route
+          path="/login"
+          element={
+            <PublicGuard>
+              <Login />
+            </PublicGuard>
+          }
+        ></Route>
+        <Route path="/contacts" element={<Layout />}>
           <Route
-            path="register"
+            index
             element={
-              <RestrictedRoute
-                component={<SignUpPage />}
-                redirectTo="/contacts"
-              />
+              <PrivateGuard>
+                <ContactForm />
+              </PrivateGuard>
             }
           />
-          <Route
-            path="login"
-            element={
-              <RestrictedRoute
-                component={<LoginPage />}
-                redirectTo="/contacts"
-              />
-            }
-          />
-          <Route
-            path="contacts"
-            element={
-              <PrivateRoute component={<ContactsPage />} redirectTo="/" />
-            }
-          />
-          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
-    </Suspense>
+    </div>
   );
 };

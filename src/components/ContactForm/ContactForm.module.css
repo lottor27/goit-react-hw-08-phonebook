@@ -1,0 +1,38 @@
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центруємо вміст по горизонталі */
+  margin-top: 20px; /* Додатковий відступ від верхнього краю */
+}
+
+.title {
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 300px; /* Збільшуємо ширину інпуту */
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.button {
+  margin-top: 20px;
+  width: 200px; /* Збільшуємо ширину кнопки */
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f5f5f5;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #e0e0e0;
+}

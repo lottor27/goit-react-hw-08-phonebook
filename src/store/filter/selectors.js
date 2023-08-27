@@ -1,0 +1,1 @@
+export const filterSelectors = state =>state.filter
