@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from 'Hooks/auth-use';
-import Loading from 'components/loading/loading';
+
 import AuthMenu from 'components/AuthMenu/AuthMenu';
 import UserMenu from 'components/UserMenu/UserMenu';
 
@@ -18,7 +18,6 @@ const HomePage = () => {
           <p>Hello, my friend.</p>
         </div>
         <div className="wrapper-relative">
-          {/* <Header headTitle="Cool PhoneBook" /> */}
           <div className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
               <div className="nav-link active">
