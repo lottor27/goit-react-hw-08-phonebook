@@ -19,7 +19,7 @@ const Header = ({ headTitle, headSubTitle }) => {
         <div>
           <div>
             <Link
-              to="/"
+              to="/goit-react-hw-08-phonebook"
               className="navbar-toggler"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNav"
@@ -32,11 +32,10 @@ const Header = ({ headTitle, headSubTitle }) => {
             <p className="navbar-brand">{headSubTitle}</p>
           </div>
         </div>
-        
+
         <div className="nav-link active">
           {isLoggedIn ? <UserMenu /> : <AuthMenu />}
         </div>
-        
       </div>
     </div>
   );
