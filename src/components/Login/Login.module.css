@@ -18,7 +18,7 @@ body {
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 5px;
-  background-color: white; /* Фон форми */
+  background-color: white;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
   height: auto; 
 }
@@ -43,7 +43,7 @@ label {
 }
 
 .submitButton {
-  background-color: #333;
+  background-color: #30cc30;
   color: white;
   border: none;
   border-radius: 5px;
@@ -52,10 +52,12 @@ label {
   margin-top: 10px;
   font-size: 16px; 
   transition: background-color 0.2s ease-in-out;
+  box-shadow: 0px 2px 5px rgba(66, 211, 80, 0.719); 
 }
 
 .submitButton:hover {
-  background-color: #0056b3;
+  background-color: #18501d;
+  box-shadow: 0px 2px 5px rgba(75, 94, 77, 0.719); 
 }
 
 

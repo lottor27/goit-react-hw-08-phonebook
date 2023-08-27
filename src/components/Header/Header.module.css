@@ -1,18 +1,17 @@
 .headerContainer {
-  background-color: #333;
+  background-color: #a3e98c48;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); 
+  box-shadow: 0px 2px 5px rgba(28, 66, 40, 0.5); 
   margin: 0 auto;
   max-width: 768px; 
 }
 
 .title {
-  color: #8c8c8c; 
+  color: #2fb836; 
   margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   font-size: 1.5rem;
 }
 
@@ -22,8 +21,7 @@
 }
 
 .loginLink {
-  color: #8c8c8c;; 
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  color: #7edb95;; 
   text-decoration: none;
   font-weight: 500;
   margin-left: 1rem;

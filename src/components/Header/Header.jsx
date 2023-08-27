@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <div className={styles.headerContainer}>
-      <h1 className={styles.title}>PhoneBook</h1>
+      <h1 className={styles.title}>PhoneBook Cool</h1>
       <div className={styles.linksContainer}>
         {token ? (
           <UserMenu />
