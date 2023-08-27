@@ -16,45 +16,43 @@ const ErrorPage = lazy(() => import('Pages/Error'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-     (
-      <Suspense fallback={<Loading />}>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<HomePage />} />
-            <Route
-              path="register"
-              element={
-                <RestrictedRoute
-                  component={<SignUpPage />}
-                  redirectTo="/contacts"
-                />
-              }
-            />
-            <Route
-              path="login"
-              element={
-                <RestrictedRoute
-                  component={<LoginPage />}
-                  redirectTo="/contacts"
-                />
-              }
-            />
-            <Route
-              path="contacts"
-              element={
-                <PrivateRoute component={<ContactsPage />} redirectTo="/" />
-              }
-            />
-            <Route path="*" element={<ErrorPage />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    )
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="register"
+            element={
+              <RestrictedRoute
+                component={<SignUpPage />}
+                redirectTo="/contacts"
+              />
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute
+                component={<LoginPage />}
+                redirectTo="/contacts"
+              />
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute component={<ContactsPage />} redirectTo="/" />
+            }
+          />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };

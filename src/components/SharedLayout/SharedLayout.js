@@ -3,15 +3,12 @@ import { Outlet } from 'react-router-dom';
 import Header from 'components/Heder/Heder';
 import Loading from 'components/loading/loading';
 
-// import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
+
 
 const SharedLayout = ({ children }) => {
   return (
     <div className="wrapper-relative">
-      <Header
-        headTitle="Cool PhoneBook"
-      />
-      {/* <BurgerMenu /> */}
+      <Header headTitle="Cool PhoneBook" />
       <Suspense fallback={<Loading />}>
         <Outlet />
       </Suspense>

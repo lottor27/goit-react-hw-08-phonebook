@@ -1,4 +1,4 @@
-import LoginForm from 'components/LoadingForm/LoadingForm'
+import LoginForm from 'components/LogInForm/LogInForm'
 import React from 'react'
 
 const LoginPage = () => {
