@@ -1,55 +1,60 @@
-import React, { useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
-import Contacts from './Phonebook/PhonebookForm';
-import SearchContact from './Filter/Filter';
-import AddContactForm from './addContact/addContact';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectErrorContacts, selectLoaderContacts } from '../redux/selectors';
-import { fetchContacts } from '../redux/operations';
-import Loading from './loading/loading';
-import Heder from './Heder/Heder';
-import { Route, Switch } from 'react-router-dom';
-import Home from 'Pages/Home';
-import Register from 'Pages/Register';
-import TodosView from 'Pages/Contacts';
-import Login from 'Pages/Login';
+import React, { Suspense, lazy, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import SharedLayout from './SharedLayout/SharedLayout';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from 'redux/auth/operations';
+import { useAuth } from 'hooks/useAuth';
+import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute';
+import Loading from './Loading/Loading';
+
+const HomePage = lazy(() => import('pages/Home/Home'));
+const SignUpPage = lazy(() => import('pages/SignUp/SignUp'));
+const LoginPage = lazy(() => import('pages/Login/Login'));
+const ContactsPage = lazy(() => import('pages/Contacts/Contacts'));
+const ErrorPage = lazy(() => import('pages/ErrorPage/ErrorPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const error = useSelector(selectErrorContacts);
-  const isLoading = useSelector(selectLoaderContacts);
-
+  const { isRefreshing } = useAuth();
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-    <div className="container">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      <Heder />
-
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
-        {/* <Route exact path="/contacts" component={TodosView} /> */}
-      </Switch>
-      <AddContactForm />
-
-      {isLoading && !error && <Loading />}
-      <SearchContact />
-      <Contacts />
-    </div>
+    !isRefreshing && (
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<HomePage />} />
+            <Route
+              path="register"
+              element={
+                <RestrictedRoute
+                  component={<SignUpPage />}
+                  redirectTo="/contacts"
+                />
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <RestrictedRoute
+                  component={<LoginPage />}
+                  redirectTo="/contacts"
+                />
+              }
+            />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute component={<ContactsPage />} redirectTo="/" />
+              }
+            />
+            <Route path="*" element={<ErrorPage />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    )
   );
 };

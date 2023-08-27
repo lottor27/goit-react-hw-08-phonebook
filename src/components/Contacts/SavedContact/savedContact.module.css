@@ -1,0 +1,37 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.item:not(:last-child) {
+  margin-bottom: 14px;
+}
+
+.icon {
+  padding-right: 10px;
+  color: var(--bc-btn);
+  font-size: 24px;
+}
+
+.itemText {
+  font-size: 14px;
+  color: var(--color-title);
+
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  color: var(--color-label);
+  font-size: 12px;
+  padding: 3px 5px;
+  outline: none;
+  border-color: transparent;
+  border-radius: 10px;
+  &:hover {
+    color: var(--color-btn);
+    background-color: var(--bc-btn-hover);
+  }
+}

@@ -1,94 +1,73 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-axios.defaults.baseURL = 'https://lpj-tasker.herokuapp.com';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-/*
- * POST @ /users/signup
- * body: { name, email, password }
- * После успешной регистрации добавляем токен в HTTP-заголовок
- */
-const register = createAsyncThunk('auth/register', async credentials => {
-  try {
-    const { data } = await axios.post('/users/signup', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
-  }
-});
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
 
-/*
- * POST @ /users/login
- * body: { email, password }
- * После успешного логина добавляем токен в HTTP-заголовок
- */
-const logIn = createAsyncThunk('auth/login', async credentials => {
-  try {
-    const { data } = await axios.post('/users/login', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
-  }
-});
 
-/*
- * POST @ /users/logout
- * headers: Authorization: Bearer token
- * После успешного логаута, удаляем токен из HTTP-заголовка
- */
-const logOut = createAsyncThunk('auth/logout', async () => {
-  try {
-    await axios.post('/users/logout');
-    token.unset();
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
-  }
-});
-/*
- * GET @ /users/current
- * headers:
- *    Authorization: Bearer token
- *
- * 1. Забираем токен из стейта через getState()
- * 2. Если токена нет, выходим не выполняя никаких операций
- * 3. Если токен есть, добавляет его в HTTP-заголовок и выполянем операцию
- */
-const fetchCurrentUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
-    if (persistedToken === null) {
-      console.log('Токена нет, уходим из fetchCurrentUser');
-      return thunkAPI.rejectWithValue();
-    }
-
-    token.set(persistedToken);
+export const signUpUser = createAsyncThunk(
+  'users/signup',
+  async (user, thunkAPI) => {
     try {
-      const { data } = await axios.get('/users/current');
+      const { data } = await axios.post('/users/signup', user);
+      setAuthHeader(data.token);
       return data;
-    } catch (error) {
-      // TODO: Добавить обработку ошибки error.message
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
 
-const operations = {
-  register,
-  logOut,
-  logIn,
-  fetchCurrentUser,
-};
-export default operations;
+export const loginUser = createAsyncThunk(
+  'users/login',
+  async (user, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/users/login', user);
+      setAuthHeader(data.token);
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const logOutUser = createAsyncThunk(
+  'users/logout',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/users/logout');
+      clearAuthHeader();
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  'users/refresh',
+  async (_, thunkAPI) => {
+    
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (!persistedToken) {
+     
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+    try {
+      setAuthHeader(persistedToken);
+      const { data } = await axios.get('/users/current');
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
