@@ -4,7 +4,6 @@ const SavedContact = ({ id, name, number }) => {
   return (
     <li  key={name}>
       <p >
-
         {name}: {number}
       </p>
       <button type="button" data-id={id}>

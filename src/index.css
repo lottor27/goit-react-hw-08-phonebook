@@ -21,3 +21,8 @@ code {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+.navbar-toggler{
+  display:  flex;
+  justify-content: center;
+  
+}

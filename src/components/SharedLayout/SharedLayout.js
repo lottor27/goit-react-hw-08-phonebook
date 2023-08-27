@@ -9,8 +9,7 @@ const SharedLayout = ({ children }) => {
   return (
     <div className="wrapper-relative">
       <Header
-        headTitle="PhoneBook Pro:"
-        headSubTitle="Your Digital Contact Organizer"
+        headTitle="Cool PhoneBook"
       />
       {/* <BurgerMenu /> */}
       <Suspense fallback={<Loading />}>

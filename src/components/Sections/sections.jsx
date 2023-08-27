@@ -5,7 +5,7 @@ const Section = ({ title, children }) => {
   return (
     <div className={css.background}>
       <h2 className={css.title}>
-        <p>@</p>
+        <p>Here</p>
         {title}
       </h2>
       {children}

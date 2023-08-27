@@ -40,11 +40,10 @@ const LoginForm = () => {
           id="email"
           name="email"
           label="email"
-          placeholder="foobar@example.com"
+          placeholder="Alex@example.com"
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-         
         />
         <label className={css.label}>Password</label>
         <input
@@ -53,17 +52,16 @@ const LoginForm = () => {
           name="password"
           label="password"
           type="password"
-          placeholder="foobar15"
+          placeholder="***"
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          
         />
         <button
           color="primary"
           variant="contained"
           type="submit"
-          className={css.button}
+          className="btn btn-outline-success"
         >
           Login
         </button>

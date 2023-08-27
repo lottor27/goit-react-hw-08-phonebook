@@ -20,11 +20,6 @@ const Header = ({ headTitle, headSubTitle }) => {
     <div className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <div>
-          {/* <button
-            type="button"
-            onClick={handleBurgerMenu}
-            className="navbar-toggler"
-          ></button> */}
           <div>
             <Link
               to="/"

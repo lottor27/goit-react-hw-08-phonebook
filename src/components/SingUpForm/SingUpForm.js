@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { signUpUser } from 'redux/auth/auth-operations';
+import css from './SingUpForm.module.css';
 
 
 const validationSchema = yup.object({
@@ -33,10 +34,11 @@ const SignUpForm = () => {
     },
   });
   return (
-    <div >
-      <form onSubmit={formik.handleSubmit}>
-        <label>Name</label>
+    <div className={css.wrapper}>
+      <form onSubmit={formik.handleSubmit} className={css.form}>
+        <label className={css.label}>Name</label>
         <input
+          className={css.input}
           id="name"
           name="name"
           label="name"
@@ -46,8 +48,9 @@ const SignUpForm = () => {
           onBlur={formik.handleBlur}
         />
 
-        <label>Email</label>
+        <label className={css.label}>Email</label>
         <input
+          className={css.input}
           id="email"
           name="email"
           label="email"
@@ -56,8 +59,9 @@ const SignUpForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        <label>Password</label>
+        <label className={css.label}>Password</label>
         <input
+          className={css.input}
           id="password"
           name="password"
           label="password"
@@ -67,7 +71,7 @@ const SignUpForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        <button type="submit" class="btn btn-outline-success active">
+        <button type="submit" className="btn btn-outline-success">
           Sign Up
         </button>
       </form>
