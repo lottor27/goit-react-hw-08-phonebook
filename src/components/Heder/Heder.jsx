@@ -4,17 +4,14 @@ import UserMenu from 'components/UserMenu/UserMenu';
 import { useAuth } from 'Hooks/auth-use';
 import { Link } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
-import { openMenu, closeMenu } from 'redux/reducers/menuSlice';
+
 
 
 
 const Header = ({ headTitle, headSubTitle }) => {
   const { isLoggedIn } = useAuth();
-  const dispatch = useDispatch();
 
 
- const handleBurgerMenu = () => dispatch(openMenu());
 
   return (
     <div className="navbar navbar-expand-lg bg-body-tertiary">
