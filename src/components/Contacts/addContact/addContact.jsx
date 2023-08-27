@@ -61,7 +61,9 @@ const AddContactForm = () => {
           onChange={onChangeInput}
           required
         />
-        <button type="submit" >Add contact</button>
+        <button type="submit" className="btn btn-outline-success">
+          Add contact
+        </button>
       </form>
     </>
   );

@@ -7,3 +7,5 @@ export const selectFilter = state => state.filter;
 
 
 export const selectMenu = state => state.menu.isOpen;
+
+export const userSelectors = state => state.user;
