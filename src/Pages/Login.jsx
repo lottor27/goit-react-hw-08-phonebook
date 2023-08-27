@@ -1,4 +1,4 @@
-mport LoginForm from 'components/LoginForm/LoginForm'
+import LoginForm from 'components/LoadingForm/LoadingForm'
 import React from 'react'
 
 const LoginPage = () => {

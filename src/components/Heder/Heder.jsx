@@ -1,26 +1,47 @@
 
-const Heder = () => {
-    return (
-      <nav className="navbar bg-body-tertiary">
-        <div className="container-fluid">
-          <a className="navbar-brand">Phone book</a>
-         
-            <p className="navbar-brand">Hello User</p>
-            <button type="button" className="btn btn-outline-success">
-              Exit
+import AuthMenu from 'components/AuthMenu/AuthMenu';
+import UserMenu from 'components/UserMenu/UserMenu';
+import { useAuth } from 'Hooks/auth-use';
+import { Link } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import { openMenu, closeMenu } from 'redux/reducers/menuSlice';
+
+
+
+const Header = ({ headTitle, headSubTitle }) => {
+  const { isLoggedIn } = useAuth();
+  const dispatch = useDispatch();
+
+
+ const handleBurgerMenu = () => dispatch(openMenu());
+
+  return (
+    <div >
+      <div className="container flex-wrap">
+        <div >
+          (
+            <button
+              type="button"
+              onClick={handleBurgerMenu}
+            >
             </button>
-          
-          <div className="d-flex">
-            <button className="btn btn-outline-success" type="button">
-              LogIn
-            </button>
-            <button className="btn btn-outline-success" type="button">
-              SignUP
-            </button>
+          )
+          <div >
+            <Link to="/" >
+              {headTitle}
+            </Link>
+            <p >{headSubTitle}</p>
           </div>
         </div>
-      </nav>
-    );
-}
+        && (
+          <div >
+            {isLoggedIn ? <UserMenu /> : <AuthMenu />}
+          </div>
+        )
+      </div>
+    </div>
+  );
+};
 
-export default Heder
+export default Header;

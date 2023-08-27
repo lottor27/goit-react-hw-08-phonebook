@@ -1,33 +1,34 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelectors, authOperations } from '../../redux/auth';
-import defaultAvatar from './default-avatar.png';
+import { selectMenu } from 'redux/selectors';
+import { NavLink } from 'react-router-dom';
+import { useAuth } from 'Hooks/auth-use';
+import UserMenu from 'components/UserMenu/UserMenu';
+import AuthMenu from 'components/AuthMenu/AuthMenu';
 
-const styles = {
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  avatar: {
-    marginRight: 4,
-  },
-  name: {
-    fontWeight: 700,
-    marginRight: 12,
-  },
-};
+import { closeMenu } from 'redux/reducers/menuSlice';
 
-export default function UserMenu() {
+const BurgerMenu = () => {
+  const isOpenMenu = useSelector(selectMenu);
   const dispatch = useDispatch();
-  const name = useSelector(authSelectors.getUsername);
-  const avatar = defaultAvatar;
+  const { isLoggedIn } = useAuth();
+  // const menuRef = useRef(null);
+
+  const addedClass = isOpenMenu ? 'open' : 'close';
+
+  const handleCloseMenu = () => dispatch(closeMenu());
 
   return (
-    <div style={styles.container}>
-      <img src={avatar} alt="" width="32" style={styles.avatar} />
-      <span style={styles.name}>Добро пожаловать, {name}</span>
-      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
-        Выйти
-      </button>
+    <div className={`burger-menu ${addedClass}`}>
+      <div >
+        <button type="button" onClick={handleCloseMenu} >
+        </button>
+        <NavLink to="/" >
+          Home
+        </NavLink>
+      </div>
+      {isLoggedIn ? <UserMenu /> : <AuthMenu />}
     </div>
   );
-}
+};
+
+export default BurgerMenu;

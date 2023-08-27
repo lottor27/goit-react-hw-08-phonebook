@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getRandomId } from 'components/random-id';
-import css from 'components/userContacts/Add-contact/add-contact.module.css';
+import { nanoid } from '@reduxjs/toolkit';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from '../../../redux/selectors';
 import { addContact } from '../../../redux/operations';
 
-const nameInputId = getRandomId();
-const numerInputId = getRandomId();
+const nameInputId = nanoid();
+const numerInputId = nanoid();
 
 const AddContactForm = () => {
   const [name, setName] = useState('');
@@ -38,12 +38,12 @@ const AddContactForm = () => {
 
   return (
     <>
-      <form className={css.form} onSubmit={onAddToContacts}>
-        <label className={css.label} htmlFor={nameInputId}>
+      <form  onSubmit={onAddToContacts}>
+        <label htmlFor={nameInputId}>
           Name
         </label>
         <input
-          className={css.input}
+          
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -52,11 +52,11 @@ const AddContactForm = () => {
           onChange={onChangeInput}
           required
         />
-        <label className={css.label} htmlFor={numerInputId}>
+        <label htmlFor={numerInputId}>
           Number
         </label>
         <input
-          className={css.input}
+          
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -65,7 +65,7 @@ const AddContactForm = () => {
           onChange={onChangeInput}
           required
         />
-        <button type="submit" className={css.button}>
+        <button type="submit" >
           Add contact
         </button>
       </form>

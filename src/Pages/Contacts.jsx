@@ -1,8 +1,8 @@
-import Loading from 'components/Loading/Loading';
-import Section from 'components/Section/section-title';
-import AddContactForm from 'components/userContacts/Add-contact/add-contact';
-import SearchContact from 'components/userContacts/SearchContact/SearchContact';
-import Contacts from 'components/userContacts/Contacts/contacts';
+import Loading from 'components/loading/loading';
+import Section from 'components/Sections/sections';
+import AddContactForm from 'components/Contacts/addContact/addContact';
+import SearchContact from 'components/Filter/Filter';
+import Contacts from 'components/Contacts/Contacts/contacts';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';

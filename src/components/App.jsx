@@ -2,17 +2,17 @@ import React, { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useDispatch } from 'react-redux';
-import { refreshUser } from 'redux/auth/operations';
-import { useAuth } from 'hooks/useAuth';
+import { refreshUser } from 'redux/auth/auth-operations';
+import { useAuth } from 'Hooks/auth-use';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
-import Loading from './Loading/Loading';
+import Loading from './loading/loading';
 
-const HomePage = lazy(() => import('pages/Home/Home'));
-const SignUpPage = lazy(() => import('pages/SignUp/SignUp'));
-const LoginPage = lazy(() => import('pages/Login/Login'));
-const ContactsPage = lazy(() => import('pages/Contacts/Contacts'));
-const ErrorPage = lazy(() => import('pages/ErrorPage/ErrorPage'));
+const HomePage = lazy(() => import('Pages/Home'));
+const SignUpPage = lazy(() => import('Pages/Register'));
+const LoginPage = lazy(() => import('Pages/Login'));
+const ContactsPage = lazy(() => import('Pages/Contacts'));
+const ErrorPage = lazy(() => import('Pages/Error'));
 
 export const App = () => {
   const dispatch = useDispatch();

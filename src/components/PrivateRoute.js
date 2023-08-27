@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from 'hooks/useAuth';
+import { useAuth } from 'Hooks/auth-use';
 
 
 export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
