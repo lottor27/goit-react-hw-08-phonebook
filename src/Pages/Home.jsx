@@ -4,13 +4,13 @@ const HomePage = () => {
   return (
     <div className="container">
       <div >
-        <h2 >Welcome to PhoneBook Pro!</h2>
-        <p >Please register or log in to get started!</p>
-         && (
+        <h2 >Welcome to Cool PhoneBook </h2>
+        <p >Please register to get started!</p>
+        
           <div >
-            <p>Hello</p>
+            <p>Hello, my friend.</p>
           </div>
-        )
+        
         
       </div>
     </div>

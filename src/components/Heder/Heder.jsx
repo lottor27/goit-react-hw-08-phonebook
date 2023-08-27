@@ -40,11 +40,11 @@ const Header = ({ headTitle, headSubTitle }) => {
             <p className="navbar-brand">{headSubTitle}</p>
           </div>
         </div>
-        && (
+        
         <div className="nav-link active">
           {isLoggedIn ? <UserMenu /> : <AuthMenu />}
         </div>
-        )
+        
       </div>
     </div>
   );

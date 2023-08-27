@@ -34,45 +34,40 @@ const SignUpForm = () => {
   });
   return (
     <div >
-      <form onSubmit={formik.handleSubmit} >
-        <label >Name</label>
+      <form onSubmit={formik.handleSubmit}>
+        <label>Name</label>
         <input
-          
           id="name"
           name="name"
           label="name"
-          placeholder="John"
+          placeholder="Alex"
           value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-         
         />
 
-        <label >Email</label>
+        <label>Email</label>
         <input
           id="email"
           name="email"
           label="email"
-          placeholder="foobar@example.com"
+          placeholder="Alex@example.com"
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-         
         />
-        <label >Password</label>
+        <label>Password</label>
         <input
-          
           id="password"
           name="password"
           label="password"
           type="password"
-          placeholder="foobar15"
+          placeholder="****"
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          
         />
-        <button type="submit" >
+        <button type="submit" class="btn btn-outline-success active">
           Sign Up
         </button>
       </form>

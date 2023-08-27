@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 const AuthMenu = () => {
   return (
     <div>
-      <NavLink to="/register" className="nav-link active">
+      <NavLink to="/register" className="btn btn-outline-success">
         Sign Up
       </NavLink>
-      <NavLink to="/login" className="nav-link active">
+      <NavLink to="/login" className="btn btn-outline-success">
         Log In
       </NavLink>
     </div>
