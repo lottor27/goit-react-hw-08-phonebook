@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/auth-operations';
-import { useAuth } from 'Hooks/auth-use';
+// import { useAuth } from 'Hooks/auth-use';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
 import Loading from './loading/loading';
