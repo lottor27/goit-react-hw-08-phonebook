@@ -1,54 +1,29 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import IconButton from '@mui/material/IconButton';
+import { selectMenu } from 'redux/selectors';
+import { NavLink } from 'react-router-dom';
+import { useAuth } from 'Hooks/auth-use';
+import UserMenu from 'components/UserMenu/UserMenu';
+import AuthMenu from 'components/AuthMenu/AuthMenu';
 
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { userSelectors } from 'redux/selectors';
-import { logOutUser } from 'redux/auth/auth-operations';
+import { closeMenu } from 'redux/reducers/menuSlice';
 
-const UserMenu = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const { profile } = useSelector(userSelectors);
+const BurgerMenu = () => {
+  const isOpenMenu = useSelector(selectMenu);
   const dispatch = useDispatch();
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-  };
+  const { isLoggedIn } = useAuth();
+  // const menuRef = useRef(null);
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const addedClass = isOpenMenu ? 'open' : 'close';
 
-  const handleLogout = () => {
-    dispatch(logOutUser());
-  };
 
   return (
-    <div>
-      {/* <button type="button" onClick={handleClick}>
-        sing In
-      </button>
-      <button type="button" onClick={handleClose}>
-        Log In
-      </button> */}
-      <IconButton
-        aria-controls="cabinet-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-        color="#8c8c8c;"
-        fontSize=""
-      ></IconButton>
-      <Menu
-        id="cabinet-menu"
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {/* <MenuItem>{profile.email}</MenuItem> */}
-        <MenuItem onClick={handleLogout}>Log Out</MenuItem>
-      </Menu>
+    <div className={`burger-menu ${addedClass}`}>
+      <div >
+    
+      </div>
+      {isLoggedIn ? <UserMenu /> : <AuthMenu />}
     </div>
   );
 };
 
-export default UserMenu;
+export default BurgerMenu;
