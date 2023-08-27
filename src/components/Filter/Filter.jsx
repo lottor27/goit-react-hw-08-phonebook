@@ -16,12 +16,8 @@ const SearchContact = ({ searchTitle }) => {
     contacts.length > 0 && (
       <div>
         <h3 className={css.textfilter}>Find Find contacts by name</h3>
-        <h3>{searchTitle}</h3>
-        <input
-          className={css.inputfilter}
-          type="text"
-          onInput={handleSearchInput}
-        />
+
+        <input className={css.input} type="text" onInput={handleSearchInput} />
       </div>
     )
   );

@@ -4,8 +4,8 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/auth-operations';
 // import { useAuth } from 'Hooks/auth-use';
-import { RestrictedRoute } from './RestrictedRoute';
-import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './Guard/RestrictedRoute';
+import { PrivateRoute } from './Guard/PrivateRoute';
 import Loading from './loading/loading';
 
 const HomePage = lazy(() => import('Pages/Home'));
